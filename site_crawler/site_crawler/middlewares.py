@@ -6,6 +6,9 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from scrapy.exceptions import IgnoreRequest
+
+from scrapy.linkextractors import IGNORED_EXTENSIONS
 
 
 class SiteCrawlerSpiderMiddleware(object):
@@ -82,6 +85,12 @@ class SiteCrawlerDownloaderMiddleware(object):
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
+
+        # Custom snippet to ignore all requests that contain an ignored file type
+        response_content_type = str(response.headers['Content-Type'])
+        for extension in IGNORED_EXTENSIONS:
+            if extension in response_content_type:
+                raise IgnoreRequest
 
         # Must either;
         # - return a Response object
