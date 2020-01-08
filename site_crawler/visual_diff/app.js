@@ -10,6 +10,8 @@ var app = express();
 app.use('/', routeHome);
 app.use('/diff', routeDiff);
 
+app.use('/js', express.static(path.join(__dirname, 'src/client/public')));
+
 var server = http.createServer(app);
 
 server.listen(3000, function() {

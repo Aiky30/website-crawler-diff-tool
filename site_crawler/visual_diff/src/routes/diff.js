@@ -10,13 +10,13 @@ router.get('/', function (req, response) {
     var options = {compareSize: true};
 
     const rootDir = 'C:/temp/DiffTool';
-    var path1 = path.join(rootDir, '/source');
-    var path2 = path.join(rootDir, '/dest');
+    var sourcePath = path.join(rootDir, '/source');
+    var targetPath = path.join(rootDir, '/target');
    
     var states = {'equal' : '==', 'left' : '->', 'right' : '<-', 'distinct' : '<>'};
 
     // Asynchronous
-    dircompare.compare(path1, path2, options)
+    dircompare.compare(sourcePath, targetPath, options)
     .then(res => {
         console.log(format('equal: %s, distinct: %s, left: %s, right: %s, differences: %s, same: %s',
                     res.equal, res.distinct, res.left, res.right, res.differences, res.same));                    
@@ -44,7 +44,7 @@ router.get('/', function (req, response) {
             }
         });
 
-        response.json({sameFilesWithContentDiff, missingFiles, newFiles, sameFiles});        
+        response.json({ sourcePath, targetPath, sameFilesWithContentDiff, missingFiles, newFiles, sameFiles});        
     })
     .catch(error => console.error(error));  
 });

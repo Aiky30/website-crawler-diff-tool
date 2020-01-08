@@ -24,7 +24,8 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
+    "diff2html-cli": "^4.2.1",
     "dir-compare": "1.8.0",
-    "diff2html-cli": "^4.2.1"
+    "express": "^4.17.1"
   }
 }
