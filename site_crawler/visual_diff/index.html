@@ -1,0 +1,19 @@
+<!doctype html>
+    <head>
+        <title>Visual diff example</title>
+    </head>
+    <body>
+        <h1>Visual diff tool</h1>
+
+        <p>Upload a file of a unified diff, created from: <code>diff -u folder1 folder2 > yourfile.txt</code></p>
+        <input id="file-upload-field" type="file" />
+
+        <h2>File comparison</h2>
+        <div id="diff">
+          <!--diff2html-diff-->
+        </div>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="./dist/index.js"></script>
+    </body>
+</html>
