@@ -36,7 +36,6 @@ class SiteMapSpider(SitemapSpider):
             # Now the crawling can begin..
             return self.initialized()
         else:
-            self.log("Bad times :(")
             # Something went wrong, we couldn't log in, so nothing happens.
 
     def parse(self, response):

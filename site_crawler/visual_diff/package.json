@@ -24,9 +24,5 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "diff2html-cli": "^4.2.1",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.16.0"
   }
 }
