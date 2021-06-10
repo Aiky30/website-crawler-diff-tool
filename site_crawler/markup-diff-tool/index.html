@@ -1,0 +1,22 @@
+<!doctype html>
+    <head>
+        <title>Visual diff tool</title>
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+    </head>
+    <body>
+        <h1>Visual diff tool</h1>
+
+        <p>Upload a file of a unified diff, created from: <code>diff -u folder1 folder2 > yourfile.txt</code></p>
+        <input id="file-upload-field" type="file" />
+
+        <h2>File comparison</h2>
+        <div id="diff">
+          <!--diff2html-diff-->
+        </div>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script>
+        <script src="src/index.js"></script>
+    </body>
+</html>

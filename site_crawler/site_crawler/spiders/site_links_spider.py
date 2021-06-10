@@ -1,38 +1,19 @@
 import scrapy
-from datetime import datetime
-from pathlib import Path
 
 from scrapy.linkextractors import LinkExtractor
-from slugify import slugify
 
-
-# Generate a directory
-timestamp = datetime.now().timestamp()
-file_root_path = source_dir = Path(Path.cwd(), "crawler_output")
-source_dir = Path(file_root_path, "127.0.0.1-{}".format(timestamp))
-source_dir.mkdir()
-
-
-def write_to_file(filename, contents):
-    # Create a filename
-    filename = slugify(filename)
-    filename = "{filename}.html".format(filename=filename)
-
-    path = Path(source_dir, filename)
-
-    # Write to the file
-    with open(path, 'wb') as f:
-        f.write(contents)
+from site_crawler.config import SITE_CONFIG
+from site_crawler.utils import create_result_directory, generate_filename_from_url, write_to_file
 
 
 class SiteLinksSpider(scrapy.Spider):
     name = 'site_links'
-    allowed_domains = [
-        '127.0.0.1'
-    ]
-    start_urls = [
-        'http://127.0.0.1:8000/'
-    ]
+    allowed_domains = SITE_CONFIG.get('allowed_domains')
+    start_urls = SITE_CONFIG.get('start_urls')
+
+    def __init__(self, *args, **kwargs):
+        self.result_directory = create_result_directory(SITE_CONFIG.get('directory_prefix'))
+        super().__init__(self, *args, **kwargs)
 
     def parse(self, response):
         page_links = LinkExtractor().extract_links(response)
@@ -42,7 +23,7 @@ class SiteLinksSpider(scrapy.Spider):
         }
 
         # Write the parsed file out
-        write_to_file(response.url, response.body)
+        write_to_file(self.result_directory, response.url, response.body)
 
         for page_link in page_links:
             # CAREFUL: yield scrapy.Request(page_link.url, callback=self.parse, dont_filter=True, headers={('User-Agent', 'Mozilla/5.0')})

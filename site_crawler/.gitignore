@@ -1,2 +1,5 @@
 site_links.json
 crawler_output/*
+
+*.DS_Store
+crawler_sitemap_output/*
