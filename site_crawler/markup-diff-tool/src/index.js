@@ -1,11 +1,3 @@
-// JQuery (Bootstrap dependency)
-import $ from "jquery";
-
-// Bootstrap
-import 'bootstrap';
-import 'diff2html/bundles/css/diff2html.min.css';
-
-
 
 console.log("Script loading");
 
