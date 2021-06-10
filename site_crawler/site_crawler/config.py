@@ -1,6 +1,6 @@
 from pathlib import Path
 
-# TODO: Find a more plugable way to add a site config per site run
+
 SITE_CONFIG = {
     'allowed_domains': [
         '127.0.0.1'
@@ -21,4 +21,3 @@ SITEMAP_CONFIG = {
         'http://127.0.0.1:8000/sitemap.xml',
     ]
 }
-
