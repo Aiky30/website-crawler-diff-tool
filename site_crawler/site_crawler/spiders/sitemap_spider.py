@@ -1,5 +1,3 @@
-import scrapy
-
 from scrapy.spiders import SitemapSpider
 
 from site_crawler.config import SITEMAP_CONFIG
@@ -15,11 +13,5 @@ class SiteMapSpider(SitemapSpider):
         super().__init__(self, *args, **kwargs)
 
     def parse(self, response):
-
-        print(response.url)
-
-
         # Write the parsed file out
         write_to_file(self.result_directory, response.url, response.body)
-
-        # write_to_file(self.result_directory, response.url, response.body)
